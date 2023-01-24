@@ -1,0 +1,23 @@
+.row-one, .row-two, .row-three {
+  display: flex;
+  flex-direction: row;
+}
+
+.row-one > div, .row-two > div, .row-three > div {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.zeroZero, .zeroOne, .zeroTwo, .oneZero, .oneOne, .oneTwo, .twoZero, .twoOne, .twoTwo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.board-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
