@@ -14,26 +14,24 @@ const gameboard = () => {
   }
 
   function displayBoard() {
-    const zeroZero = document.querySelector(".zeroZero");
-    zeroZero.innerText = _board[0][0];
-    const zeroOne = document.querySelector(".zeroOne");
-    zeroOne.innerText = _board[0][1];
-    const zeroTwo = document.querySelector(".zeroTwo");
-    zeroTwo.innerText = _board[0][2];
-
-    const oneZero = document.querySelector(".oneZero");
-    oneZero.innerText = _board[1][0];
-    const oneOne = document.querySelector(".oneOne");
-    oneOne.innerText = _board[1][1];
-    const oneTwo = document.querySelector(".oneTwo");
-    oneTwo.innerText = _board[1][2];
-
-    const twoZero = document.querySelector(".twoZero");
-    twoZero.innerText = _board[2][0];
-    const twoOne = document.querySelector(".twoOne");
-    twoOne.innerText = _board[2][1];
-    const twoTwo = document.querySelector(".twoTwo");
-    twoTwo.innerText = _board[2][2];
+    let turn = 1;
+    let turnDisplay = document.querySelector(".turn-display");
+    let temp = document.querySelectorAll(".board-display > div");
+    turnDisplay.innerText = "X's Turn";
+    for (i = 0; i < temp.length; i++)
+      temp[i].addEventListener("click", (e) => {
+        if (e.target.innerText == "") {
+          if (turn % 2 === 0) {
+            e.target.innerText = "O";
+            turnDisplay.innerText = "X's Turn";
+            turn++;
+          } else {
+            e.target.innerText = "X";
+            turnDisplay.innerText = "O's Turn";
+            turn++;
+          }
+        }
+      });
   }
 
   return {
@@ -45,10 +43,6 @@ const gameboard = () => {
 
 function temporary() {
   board = gameboard();
-  let test = prompt()
-  let test2 = prompt()
-  let test3 = prompt()
-  board.setTile(test, test2, test3)
   board.displayBoard();
 }
 
