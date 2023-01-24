@@ -5,21 +5,17 @@ const gameboard = () => {
     [null, null, null],
   ];
 
-  function getTile(x, y) {
-    return _board[x][y];
-  }
-
-  function setTile(x, y, value) {
-    _board[x][y] = value;
-  }
-
   function displayBoard() {
+    checkScore(_board);
+
     let turn = 1;
     let turnDisplay = document.querySelector(".turn-display");
-    let temp = document.querySelectorAll(".board-display > div");
+    let cell = document.querySelectorAll(".board-display > div");
+
     turnDisplay.innerText = "X's Turn";
-    for (i = 0; i < temp.length; i++) {
-      temp[i].addEventListener("click", (e) => {
+
+    for (i = 0; i < cell.length; i++) {
+      cell[i].addEventListener("click", (e) => {
         if (e.target.innerText == "") {
           if (turn % 2 === 0) {
             e.target.innerText = "O";
@@ -84,16 +80,14 @@ const gameboard = () => {
             if (e.target.id === "twoTwo") {
               _board[2][2] = "X";
             }
+            checkScore(_board);
           }
         }
       });
     }
-    checkScore(_board);
   }
 
   return {
-    getTile,
-    setTile,
     displayBoard,
   };
 };
@@ -110,50 +104,69 @@ const players = (name, symbol) => {
 function temporary2() {
   const playerOne = players("jeff", "X");
   const playerTwo = players("bob", "O");
-  console.log(playerOne.name, playerOne.symbol);
 }
 
 function checkScore(arr) {
-  for (let i = 0; i < 3; i++) {
-    if (
-      arr[i][0] === arr[i][1] &&
-      arr[i][0] === arr[i][2] &&
-      arr[i][0] !== null
-    ) {
-      if (arr[i][0] === "X") {
-        alert("X wins");
-      } else {
-        alert("O wins");
-      }
-    }
-  }
+  let turnDisplay = document.querySelector(".turn-display");
+  let temp = arr;
+  let tie = true;
+  let win = false;
+  let winner = "";
 
-  for (let i = 0; i < 3; i++) {
+  for (i = 0; i < temp.length; i++) {
     if (
-      arr[0][i] === arr[1][i] &&
-      arr[0][i] === arr[2][i] &&
-      arr[0][i] !== null
+      temp[i][0] === temp[i][1] &&
+      temp[i][1] === temp[i][2] &&
+      temp[i][0] !== null
     ) {
-      if (arr[0][i] === "O") {
-        alert("X wins");
-      } else {
-        alert("O wins");
-      }
+      win = true;
+      winner = temp[i][0];
+    }
+
+    if (
+      temp[0][i] === temp[1][i] &&
+      temp[1][i] === temp[2][i] &&
+      temp[0][i] !== null
+    ) {
+      win = true;
+      winner = temp[0][i];
     }
   }
 
   if (
-    (arr[0][0] === arr[1][1] &&
-      arr[0][0] === arr[2][2] &&
-      arr[0][0] !== null) ||
-    (arr[0][2] === arr[1][1] && arr[0][2] === arr[2][0] && arr[0][2] !== null)
+    temp[0][0] === temp[1][1] &&
+    temp[1][1] === temp[2][2] &&
+    temp[0][0] !== null
   ) {
-    if (arr[0][0] === "X") {
-      alert("X wins");
-    } else {
-      alert("O wins");
+    win = true;
+    winner = temp[0][0];
+  }
+
+  if (
+    temp[0][2] === temp[1][1] &&
+    temp[1][1] === temp[2][0] &&
+    temp[0][2] !== null
+  ) {
+    win = true;
+    winner = temp[0][2];
+  }
+
+  if (win === true) {
+    turnDisplay.innerText = winner + " wins!";
+  }
+
+  for (i = 0; i < temp.length; i++) {
+    for (j = 0; j < temp[i].length; j++) {
+      if (temp[i][j] === null) {
+        tie = false;
+      }
     }
   }
+
+  if (tie === true) {
+    turnDisplay.innerText = "It's a tie!";
+  }
 }
+
 temporary();
 temporary2();
