@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Library</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="turn-display"></div>
-      <div class="board-display">
-        <div class="row-one">
-          <div class="zeroZero" id="zeroZero"></div>
-          <div class="zeroOne"id="zeroOne"></div>
-          <div class="zeroTwo"id="zeroTwo"></div>
-        </div>
-        <div class="row-two">
-          <div class="oneZero" id="oneZero"></div>
-          <div class="oneOne" id="oneOne"></div>
-          <div class="oneTwo" id="oneTwo"></div>
-        </div>
-        <div class="row-three">
-          <div class="twoZero" id="twoZero"></div>
-          <div class="twoOne"id="twoOne"></div>
-          <div class="twoTwo"id="twoTwo"></div>
-        </div>
-      </div>
-    </div>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Tic Tac Toe</title>
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+	</head>
+	<body>
+		<div class="header">
+			<h1>
+				<blockquote>
+					<span>Tic Tac Toe</span>
+				</blockquote>
+			</h1>
+			<div class="buttons">
+				<button type="submit" id="start">Start</button>
+				<button type="submit" id="ai-button">Vs AI</button>
+				<button type="submit" id="reset" onclick="reset()">Reset</button>
+			</div>
+		</div>
+		<div class="container">
+			<div class="below-header">
+				<div class="turn-display"></div>
+			</div>
+			<div class="board-display">
+				<div class="row-one">
+					<div class="zeroZero" id="zeroZero"></div>
+					<div class="zeroOne" id="zeroOne"></div>
+					<div class="zeroTwo" id="zeroTwo"></div>
+				</div>
+				<div class="row-two">
+					<div class="oneZero" id="oneZero"></div>
+					<div class="oneOne" id="oneOne"></div>
+					<div class="oneTwo" id="oneTwo"></div>
+				</div>
+				<div class="row-three">
+					<div class="twoZero" id="twoZero"></div>
+					<div class="twoOne" id="twoOne"></div>
+					<div class="twoTwo" id="twoTwo"></div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			Darragh McGurk •
+			<script>
+				document.write(new Date().getFullYear());
+			</script>
+		</div>
+	</body>
 </html>

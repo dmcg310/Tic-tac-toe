@@ -6,12 +6,18 @@ const gameboard = () => {
 	];
 
 	function displayBoard() {
+		let player;
 		let turn = 1;
 		let turnDisplay = document.querySelector(".turn-display");
 		let cell = document.querySelectorAll(".board-display > div");
-		let player = prompt("X or O?");
+		let start = document.querySelector("#start");
 
-		turnDisplay.innerText = `${player}'s Turn`;
+		start.addEventListener("click", () => {
+			player = prompt("Who goes first? (X or O)");
+			player.toUpperCase();
+			return (turnDisplay.innerText = player);
+		});
+
 		for (i = 0; i < cell.length; i++) {
 			cell[i].addEventListener("click", (e) => {
 				if (e.target.innerText == "") {
@@ -19,9 +25,9 @@ const gameboard = () => {
 						turn += 1;
 					}
 					if (turn % 2 === 0) {
-						console.log(turn);
 						e.target.innerText = "O";
-						turnDisplay.innerText = `${player}'s Turn`;
+						e.target.setAttribute("style", "color: #24c6dc;");
+						turnDisplay.innerText = "X";
 						turn++;
 						if (e.target.id === "zeroZero") {
 							_board[0][0] = "O";
@@ -53,7 +59,8 @@ const gameboard = () => {
 						checkScore(_board, turn);
 					} else {
 						e.target.innerText = "X";
-						turnDisplay.innerText = "O's Turn";
+						e.target.setAttribute("style", "color: #514a9d;");
+						turnDisplay.innerText = "O";
 						turn++;
 						if (e.target.id === "zeroZero") {
 							_board[0][0] = "X";
