@@ -254,7 +254,6 @@ function aiTurn(_board) {
 
 					if (firstIndex === 0 && secondIndex === 0) {
 						document.getElementById("zeroZero").innerText = "X";
-						//style the innertext
 						document.getElementById("zeroZero").setAttribute("style", "color: #514a9d;");
 					}
 					if (firstIndex === 0 && secondIndex === 1) {
